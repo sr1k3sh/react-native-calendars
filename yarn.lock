@@ -2155,6 +2155,71 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@r1k3sh/react-native-calendars@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@r1k3sh/react-native-calendars@workspace:."
+  dependencies:
+    "@babel/core": "npm:^7.20.0"
+    "@babel/eslint-parser": "npm:^7.13.4"
+    "@babel/preset-env": "npm:^7.20.0"
+    "@babel/runtime": "npm:^7.20.0"
+    "@react-native/babel-preset": "npm:0.73.21"
+    "@react-native/eslint-config": "npm:0.73.2"
+    "@react-native/metro-config": "npm:0.73.5"
+    "@react-native/typescript-config": "npm:0.73.1"
+    "@testing-library/react-native": "npm:^11.0.0"
+    "@tsconfig/docusaurus": "npm:^1.0.4"
+    "@types/jest": "npm:^29.2.1"
+    "@types/lodash": "npm:^4.14.170"
+    "@types/react": "npm:^18.2.6"
+    "@types/react-native": "npm:^0.64.19"
+    "@types/react-test-renderer": "npm:^18.2.0"
+    "@types/xdate": "npm:^0.8.32"
+    "@typescript-eslint/eslint-plugin": "npm:^5.27.1"
+    "@typescript-eslint/parser": "npm:^5.27.1"
+    "@welldone-software/why-did-you-render": "npm:^6.0.3"
+    babel-eslint: "npm:^10.1.0"
+    babel-jest: "npm:^29.6.3"
+    babel-plugin-module-resolver: "npm:^5.0.2"
+    detox: "npm:^18.0.0"
+    eslint: "npm:8.19.0"
+    eslint-config-prettier: "npm:^6.11.0"
+    eslint-plugin-jest: "npm:^26.0.0"
+    eslint-plugin-prettier: "npm:^4.2.1"
+    eslint-plugin-react: "npm:^7.24.0"
+    eslint-plugin-react-native: "npm:^4.0.0"
+    eslint-plugin-testing-library: "npm:^7.1.1"
+    hoist-non-react-statics: "npm:^3.3.1"
+    husky: "npm:^4.2.5"
+    jest: "npm:^29.6.3"
+    jest-date-mock: "npm:^1.0.8"
+    lint-staged: "npm:^10.2.11"
+    lodash: "npm:^4.17.15"
+    memoize-one: "npm:^5.2.1"
+    metro-react-native-babel-preset: "npm:0.73.7"
+    mocha: "npm:^7.1.0"
+    moment: "npm:^2.29.4"
+    prettier: "npm:2.8.8"
+    prettier-eslint: "npm:^16.3.0"
+    prop-types: "npm:^15.5.10"
+    react: "npm:18.2.0"
+    react-native: "npm:0.73.11"
+    react-native-safe-area-context: "npm:4.5.0"
+    react-native-swipe-gestures: "npm:^1.0.5"
+    react-recipes: "npm:^1.4.0"
+    react-test-renderer: "npm:18.2.0"
+    reassure: "npm:^0.4.1"
+    recyclerlistview: "npm:^4.0.0"
+    semver: "npm:5.x.x"
+    shell-utils: "npm:1.x.x"
+    typescript: "npm:5.0.4"
+    xdate: "npm:^0.8.0"
+  dependenciesMeta:
+    moment:
+      optional: true
+  languageName: unknown
+  linkType: soft
+
 "@react-native-community/cli-clean@npm:12.3.7":
   version: 12.3.7
   resolution: "@react-native-community/cli-clean@npm:12.3.7"
@@ -9623,71 +9688,6 @@ __metadata:
   checksum: 10c0/2bdb6b93fbb1820b024b496042cce405c57e2f85e777c9aabd55f9b26d145408f9f74f5934676ffdc46f3dcff656d78413a6e43968e7b3f92eea35b3052e9053
   languageName: node
   linkType: hard
-
-"react-native-calendars@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-native-calendars@workspace:."
-  dependencies:
-    "@babel/core": "npm:^7.20.0"
-    "@babel/eslint-parser": "npm:^7.13.4"
-    "@babel/preset-env": "npm:^7.20.0"
-    "@babel/runtime": "npm:^7.20.0"
-    "@react-native/babel-preset": "npm:0.73.21"
-    "@react-native/eslint-config": "npm:0.73.2"
-    "@react-native/metro-config": "npm:0.73.5"
-    "@react-native/typescript-config": "npm:0.73.1"
-    "@testing-library/react-native": "npm:^11.0.0"
-    "@tsconfig/docusaurus": "npm:^1.0.4"
-    "@types/jest": "npm:^29.2.1"
-    "@types/lodash": "npm:^4.14.170"
-    "@types/react": "npm:^18.2.6"
-    "@types/react-native": "npm:^0.64.19"
-    "@types/react-test-renderer": "npm:^18.2.0"
-    "@types/xdate": "npm:^0.8.32"
-    "@typescript-eslint/eslint-plugin": "npm:^5.27.1"
-    "@typescript-eslint/parser": "npm:^5.27.1"
-    "@welldone-software/why-did-you-render": "npm:^6.0.3"
-    babel-eslint: "npm:^10.1.0"
-    babel-jest: "npm:^29.6.3"
-    babel-plugin-module-resolver: "npm:^5.0.2"
-    detox: "npm:^18.0.0"
-    eslint: "npm:8.19.0"
-    eslint-config-prettier: "npm:^6.11.0"
-    eslint-plugin-jest: "npm:^26.0.0"
-    eslint-plugin-prettier: "npm:^4.2.1"
-    eslint-plugin-react: "npm:^7.24.0"
-    eslint-plugin-react-native: "npm:^4.0.0"
-    eslint-plugin-testing-library: "npm:^7.1.1"
-    hoist-non-react-statics: "npm:^3.3.1"
-    husky: "npm:^4.2.5"
-    jest: "npm:^29.6.3"
-    jest-date-mock: "npm:^1.0.8"
-    lint-staged: "npm:^10.2.11"
-    lodash: "npm:^4.17.15"
-    memoize-one: "npm:^5.2.1"
-    metro-react-native-babel-preset: "npm:0.73.7"
-    mocha: "npm:^7.1.0"
-    moment: "npm:^2.29.4"
-    prettier: "npm:2.8.8"
-    prettier-eslint: "npm:^16.3.0"
-    prop-types: "npm:^15.5.10"
-    react: "npm:18.2.0"
-    react-native: "npm:0.73.11"
-    react-native-safe-area-context: "npm:4.5.0"
-    react-native-swipe-gestures: "npm:^1.0.5"
-    react-recipes: "npm:^1.4.0"
-    react-test-renderer: "npm:18.2.0"
-    reassure: "npm:^0.4.1"
-    recyclerlistview: "npm:^4.0.0"
-    semver: "npm:5.x.x"
-    shell-utils: "npm:1.x.x"
-    typescript: "npm:5.0.4"
-    xdate: "npm:^0.8.0"
-  dependenciesMeta:
-    moment:
-      optional: true
-  languageName: unknown
-  linkType: soft
 
 "react-native-safe-area-context@npm:4.5.0":
   version: 4.5.0

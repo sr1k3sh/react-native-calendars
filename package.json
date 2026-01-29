@@ -1,5 +1,5 @@
 {
-  "name": "@sr1k3sh/react-native-calendars",
+  "name": "@r1k3sh/react-native-calendars",
   "version": "1.22.0",
   "main": "src/index.ts",
   "types": "src/index.d.ts",
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wix/react-native-calendars"
+    "url": "git+https://github.com/sr1k3sh/react-native-calendars"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "author": "Wix.com",
+  "author": "sr1k3sh",
   "license": "MIT",
   "dependencies": {
     "hoist-non-react-statics": "^3.3.1",
