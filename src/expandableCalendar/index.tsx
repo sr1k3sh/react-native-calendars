@@ -51,8 +51,6 @@ const BOUNCINESS = 6;
 const WEEK_HEIGHT = 46;
 const DAY_NAMES_PADDING = 24;
 const PAN_GESTURE_THRESHOLD = 30;
-const LEFT_ARROW = require('../calendar/img/previous.png');
-const RIGHT_ARROW = require('../calendar/img/next.png');
 const knobHitSlop = { left: 10, right: 10, top: 10, bottom: 10 };
 const DEFAULT_HEADER_HEIGHT = 78;
 
@@ -118,8 +116,8 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
     onCalendarToggled,
     disablePan,
     hideKnob = numberOfDays && numberOfDays > 1,
-    leftArrowImageSource = LEFT_ARROW,
-    rightArrowImageSource = RIGHT_ARROW,
+    leftArrowImageSource = undefined,
+    rightArrowImageSource = undefined,
     allowShadow = true,
     disableWeekScroll,
     openThreshold = PAN_GESTURE_THRESHOLD,
@@ -660,8 +658,8 @@ export default Object.assign(ExpandableCalendar, {
     horizontal: true,
     initialPosition: Positions.CLOSED,
     firstDay: 0,
-    leftArrowImageSource: LEFT_ARROW,
-    rightArrowImageSource: RIGHT_ARROW,
+    leftArrowImageSource: undefined,
+    rightArrowImageSource: undefined,
     allowShadow: true,
     openThreshold: PAN_GESTURE_THRESHOLD,
     closeThreshold: PAN_GESTURE_THRESHOLD,
