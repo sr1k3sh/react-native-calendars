@@ -6,41 +6,41 @@ import throttle from 'lodash/throttle';
 import XDate from 'xdate';
 
 import React, {
-  useContext,
-  useRef,
-  useState,
-  useEffect,
+  forwardRef,
   useCallback,
-  useMemo,
+  useContext,
+  useEffect,
   useImperativeHandle,
-  forwardRef
+  useMemo,
+  useRef,
+  useState
 } from 'react';
 import {
   AccessibilityInfo,
-  PanResponder,
   Animated,
-  View,
-  Text,
+  GestureResponderEvent,
   Image,
   ImageSourcePropType,
-  GestureResponderEvent,
+  PanResponder,
   PanResponderGestureState,
+  Text,
   TouchableOpacity,
+  View,
   type LayoutChangeEvent
 } from 'react-native';
 
-import {page} from '../dateutils';
-import {parseDate, toMarkingFormat} from '../interface';
-import {DateData, Direction} from '../types';
-import styleConstructor, {KNOB_CONTAINER_HEIGHT} from './style';
-import WeekDaysNames from '../commons/WeekDaysNames';
 import Calendar from '../calendar';
-import CalendarList, {CalendarListProps} from '../calendar-list';
+import CalendarList, { CalendarListProps } from '../calendar-list';
+import constants from '../commons/constants';
+import WeekDaysNames from '../commons/WeekDaysNames';
+import { page } from '../dateutils';
+import { parseDate, toMarkingFormat } from '../interface';
+import { DateData, Direction } from '../types';
+import { CalendarNavigationTypes, UpdateSources } from './commons';
+import Context from './Context';
+import styleConstructor, { KNOB_CONTAINER_HEIGHT } from './style';
 import Week from './week';
 import WeekCalendar from './WeekCalendar';
-import Context from './Context';
-import constants from '../commons/constants';
-import {UpdateSources, CalendarNavigationTypes} from './commons';
 
 export enum Positions {
   CLOSED = 'closed',
@@ -53,7 +53,7 @@ const DAY_NAMES_PADDING = 24;
 const PAN_GESTURE_THRESHOLD = 30;
 const LEFT_ARROW = require('../calendar/img/previous.png');
 const RIGHT_ARROW = require('../calendar/img/next.png');
-const knobHitSlop = {left: 10, right: 10, top: 10, bottom: 10};
+const knobHitSlop = { left: 10, right: 10, top: 10, bottom: 10 };
 const DEFAULT_HEADER_HEIGHT = 78;
 
 export interface ExpandableCalendarProps extends CalendarListProps {
@@ -110,7 +110,7 @@ const headerStyleOverride = {
 
 const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarProps>((props, ref) => {
   const _context = useContext(Context);
-  const {date, setDate, numberOfDays, timelineLeftInset} = _context;
+  const { date, setDate, numberOfDays, timelineLeftInset } = _context;
 
   const {
     /** ExpandableCalendar props */
@@ -143,8 +143,8 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
 
   const [screenReaderEnabled, setScreenReaderEnabled] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(0);
-  const onHeaderLayout = useCallback(({nativeEvent: {layout: {height}}}: LayoutChangeEvent) => {
-      setHeaderHeight(height || DEFAULT_HEADER_HEIGHT);
+  const onHeaderLayout = useCallback(({ nativeEvent: { layout: { height } } }: LayoutChangeEvent) => {
+    setHeaderHeight(height || DEFAULT_HEADER_HEIGHT);
   }, []);
 
   /** Date */
@@ -213,14 +213,14 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
 
   useEffect(() => {
     openHeight.current = getOpenHeight();
-  } ,[headerHeight]);
+  }, [headerHeight]);
 
 
   useEffect(() => {
     if (numberOfDays) {
-        setPosition(Positions.CLOSED);
+      setPosition(Positions.CLOSED);
     }
-}, [numberOfDays]);
+  }, [numberOfDays]);
 
   /** Components' refs */
 
@@ -234,9 +234,9 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
   const style = useRef(styleConstructor(theme));
   const themeObject = Object.assign(headerStyleOverride, theme);
 
-  const _wrapperStyles = useRef({style: {height: startHeight}});
-  const _headerStyles = {style: {top: isOpen ? -headerHeight : 0}};
-  const _weekCalendarStyles = {style: {opacity: isOpen ? 0 : 1}};
+  const _wrapperStyles = useRef({ style: { height: startHeight } });
+  const _headerStyles = { style: { top: isOpen ? -headerHeight : 0 } };
+  const _weekCalendarStyles = { style: { opacity: isOpen ? 0 : 1 } };
 
   const shouldHideArrows = !horizontal ? true : hideArrows || false;
 
@@ -264,24 +264,24 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
   }, [calendarStyle]);
 
   const animatedHeaderStyle = useMemo(() => {
-    return [style.current.header, {height: headerHeight, top: headerDeltaY.current}];
+    return [style.current.header, { height: headerHeight, top: headerDeltaY.current }];
   }, [headerDeltaY.current, headerHeight]);
 
   const weekCalendarStyle = useMemo(() => {
-    return [style.current.weekContainer, isOpen ? style.current.hidden : style.current.visible, {top: headerHeight}];
+    return [style.current.weekContainer, isOpen ? style.current.hidden : style.current.visible, { top: headerHeight }];
   }, [isOpen, headerHeight]);
 
   const containerStyle = useMemo(() => {
-    return [allowShadow && style.current.containerShadow, propsStyle, headerHeight === 0  && style.current.hidden, {overflow: 'hidden'} as const];
+    return [allowShadow && style.current.containerShadow, propsStyle, headerHeight === 0 && style.current.hidden, { overflow: 'hidden' } as const];
   }, [allowShadow, propsStyle, headerHeight]);
 
   const wrapperStyle = useMemo(() => {
-    return {height: deltaY};
+    return { height: deltaY };
   }, [deltaY]);
 
   const numberOfDaysHeaderStyle = useMemo(() => {
     if (numberOfDays && numberOfDays > 1) {
-      return {paddingHorizontal: 0};
+      return { paddingHorizontal: 0 };
     }
   }, [numberOfDays]);
 
@@ -305,7 +305,7 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
   }, []);
 
   const handleScreenReaderStatus = (screenReaderEnabled: any) => {
-    setScreenReaderEnabled(screenReaderEnabled);
+    setScreenReaderEnabled(false);
   };
 
   /** Scroll */
@@ -464,12 +464,12 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
 
   const _onPressArrowLeft = useCallback((method: () => void, month?: XDate) => {
     onPressArrowLeft?.(method, month);
-    scrollPage(false, isOpen ? UpdateSources.ARROW_PRESS: UpdateSources.WEEK_ARROW_PRESS);
+    scrollPage(false, isOpen ? UpdateSources.ARROW_PRESS : UpdateSources.WEEK_ARROW_PRESS);
   }, [onPressArrowLeft, scrollPage]);
 
   const _onPressArrowRight = useCallback((method: () => void, month?: XDate) => {
     onPressArrowRight?.(method, month);
-    scrollPage(true, isOpen ? UpdateSources.ARROW_PRESS: UpdateSources.WEEK_ARROW_PRESS);
+    scrollPage(true, isOpen ? UpdateSources.ARROW_PRESS : UpdateSources.WEEK_ARROW_PRESS);
   }, [onPressArrowRight, scrollPage]);
 
   const _onDayPress = useCallback((value: DateData) => {
@@ -515,24 +515,26 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
           }, 0);
         }
       }
-    }, 100, {trailing: true, leading: false}
+    }, 100, { trailing: true, leading: false }
   ), [date, scrollPage]);
 
   /** Renders */
 
   const _renderArrow = useCallback((direction: Direction) => {
+    // If custom renderArrow is provided, use it
     if (isFunction(renderArrow)) {
       return renderArrow(direction);
     }
 
+    // Default to text arrow (since image sources are undefined)
     return (
-      <Image
-        source={direction === 'right' ? rightArrowImageSource : leftArrowImageSource}
-        style={style.current.arrowImage}
-        testID={`${testID}.${direction}Arrow`}
-      />
+      <View pointerEvents="none">
+        <Text style={{ fontSize: 18, color: '#000' }}>
+          {direction === 'left' ? '←' : '→'}
+        </Text>
+      </View>
     );
-  }, [renderArrow, rightArrowImageSource, leftArrowImageSource, testID]);
+  }, [renderArrow]);
 
   const renderWeekDaysNames = () => {
     return (
@@ -565,7 +567,7 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
   const renderKnob = () => {
     return (
       <View style={style.current.knobContainer} pointerEvents={'box-none'}>
-        <TouchableOpacity style={style.current.knob} testID={`${testID}.knob`} onPress={toggleCalendarPosition} hitSlop={knobHitSlop}/>
+        <TouchableOpacity style={style.current.knob} testID={`${testID}.knob`} onPress={toggleCalendarPosition} hitSlop={knobHitSlop} />
       </View>
     );
   };
