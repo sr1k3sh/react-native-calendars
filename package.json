@@ -1,5 +1,5 @@
 {
-  "name": "react-native-calendars",
+  "name": "@sr1k3sh/react-native-calendars",
   "version": "1.22.0",
   "main": "src/index.ts",
   "types": "src/index.d.ts",
