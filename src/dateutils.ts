@@ -3,11 +3,13 @@ const {toMarkingFormat} = require('./interface');
 
 const latinNumbersPattern = /[0-9]/g;
 
+type XDateType = InstanceType<typeof XDate>;
+
 function isValidXDate(date: any) {
   return date && (date instanceof XDate);
 }
 
-export function sameMonth(a?: XDate, b?: XDate) {
+export function sameMonth(a?: XDateType, b?: XDateType) {
   if (!isValidXDate(a) || !isValidXDate(b)) {
     return false;
   } else {
@@ -15,7 +17,7 @@ export function sameMonth(a?: XDate, b?: XDate) {
   }
 }
 
-export function sameDate(a?: XDate, b?: XDate) {
+export function sameDate(a?: XDateType, b?: XDateType) {
   if (!isValidXDate(a) || !isValidXDate(b)) {
     return false;
   } else {
@@ -72,18 +74,18 @@ export function isPastDate(date: string) {
   return false;
 }
 
-export function isToday(date?: XDate | string) {
+export function isToday(date?: XDateType | string) {
   const d = date instanceof XDate ? date : new XDate(date);
   return sameDate(d, XDate.today());
 }
 
-export function isGTE(a: XDate, b: XDate) {
+export function isGTE(a: XDateType, b: XDateType) {
   if (a && b) {
     return b.diffDays(a) > -1;
   }
 }
 
-export function isLTE(a: XDate, b: XDate) {
+export function isLTE(a: XDateType, b: XDateType) {
   if (a && b) {
     return a.diffDays(b) > -1;
   }
@@ -94,8 +96,8 @@ export function formatNumbers(date: any) {
   return numbers ? date.toString().replace(latinNumbersPattern, (char: any) => numbers[+char]) : date;
 }
 
-function fromTo(a: XDate, b: XDate): XDate[] {
-  const days: XDate[] = [];
+function fromTo(a: XDateType, b: XDateType): XDateType[] {
+  const days: XDateType[] = [];
   let from = +a;
   const to = +b;
 
@@ -105,13 +107,13 @@ function fromTo(a: XDate, b: XDate): XDate[] {
   return days;
 }
 
-export function month(date: XDate) { // exported for tests only
+export function month(date: XDateType) { // exported for tests only
   const year = date.getFullYear(),
     month = date.getMonth();
   const days = new XDate(year, month + 1, 0).getDate();
 
-  const firstDay: XDate = new XDate(year, month, 1, 0, 0, 0, true);
-  const lastDay: XDate = new XDate(year, month, days, 0, 0, 0, true);
+  const firstDay: XDateType = new XDate(year, month, 1, 0, 0, 0, true);
+  const lastDay: XDateType = new XDate(year, month, days, 0, 0, 0, true);
 
   return fromTo(firstDay, lastDay);
 }
@@ -125,10 +127,10 @@ export function weekDayNames(firstDayOfWeek = 0) {
   return weekDaysNames;
 }
 
-export function page(date: XDate, firstDayOfWeek = 0, showSixWeeks = false) {
+export function page(date: XDateType, firstDayOfWeek = 0, showSixWeeks = false) {
   const days = month(date);
-  let before: XDate[] = [];
-  let after: XDate[] = [];
+  let before: XDateType[] = [];
+  let after: XDateType[] = [];
 
   const fdow = (7 + firstDayOfWeek) % 7 || 7;
   const ldow = (fdow + 6) % 7;
@@ -165,12 +167,12 @@ export function page(date: XDate, firstDayOfWeek = 0, showSixWeeks = false) {
   return before.concat(days.slice(1, days.length - 1), after);
 }
 
-export function isDateNotInRange(date: XDate, minDate: string, maxDate: string) {
+export function isDateNotInRange(date: XDateType, minDate: string, maxDate: string) {
   return (minDate && !isGTE(date, new XDate(minDate))) || (maxDate && !isLTE(date, new XDate(maxDate)));
 }
 
 export function getWeekDates(date: string, firstDay = 0, format?: string) {
-  const d: XDate = new XDate(date);
+  const d: XDateType = new XDate(date);
   if (date && d.valid()) {
     const daysArray = [d];
     let dayOfTheWeek = d.getDay() - firstDay;
@@ -213,7 +215,7 @@ export function getPartialWeekDates(date?: string, numberOfDays = 7) {
   return partialWeek;
 }
 
-export function generateDay(originDate: string | XDate, daysOffset = 0) {
+export function generateDay(originDate: string | XDateType, daysOffset = 0) {
   const baseDate = originDate instanceof XDate ? originDate : new XDate(originDate);
   return toMarkingFormat(baseDate.clone().addDays(daysOffset));
 }

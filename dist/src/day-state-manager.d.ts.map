@@ -1,0 +1,1 @@
+{"version":3,"file":"day-state-manager.d.ts","sourceRoot":"","sources":["../../src/day-state-manager.ts"],"names":[],"mappings":"AAGA,QAAA,MAAM,KAAK,KAAmB,CAAC;AAC/B,KAAK,SAAS,GAAG,YAAY,CAAC,OAAO,KAAK,CAAC,CAAC;AAE5C,wBAAgB,QAAQ,CAAC,GAAG,EAAE,SAAS,EAAE,OAAO,EAAE,SAAS,EAAE,KAAK,EAAE,GAAG,EAAE,mBAAmB,EAAE,OAAO,OAmBpG"}

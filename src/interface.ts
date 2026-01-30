@@ -1,5 +1,7 @@
 const XDate = require('xdate');
 
+type XDateType = InstanceType<typeof XDate>;
+
 export function padNumber(n: number) {
   if (n < 10) {
     return '0' + n;
@@ -7,7 +9,7 @@ export function padNumber(n: number) {
   return n;
 }
 
-export function xdateToData(date: XDate | string) {
+export function xdateToData(date: XDateType | string) {
   const d = date instanceof XDate ? date : new XDate(date);
   const dateString = toMarkingFormat(d);
   return {
@@ -41,7 +43,7 @@ export function parseDate(d?: any) {
   }
 }
 
-export function toMarkingFormat(d: XDate) {
+export function toMarkingFormat(d: XDateType) {
   if (!isNaN(d.getTime())) {
     const year = `${d.getFullYear()}`;
     const month = d.getMonth() + 1;

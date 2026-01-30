@@ -254,8 +254,8 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
     return [
       style.current.weekDayNames,
       {
-        paddingLeft: isNumber(leftPaddings) ? leftPaddings + 6 : DAY_NAMES_PADDING,
-        paddingRight: isNumber(rightPaddings) ? rightPaddings + 6 : DAY_NAMES_PADDING
+        paddingLeft: isNumber(leftPaddings) ? (leftPaddings as number) + 6 : DAY_NAMES_PADDING,
+        paddingRight: isNumber(rightPaddings) ? (rightPaddings as number) + 6 : DAY_NAMES_PADDING
       }
     ];
   }, [calendarStyle]);

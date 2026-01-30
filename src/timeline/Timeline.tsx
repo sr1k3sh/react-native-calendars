@@ -154,7 +154,7 @@ const Timeline = (props: TimelineProps) => {
   const pageEvents = useMemo(() => {
     return map(pageDates, d => groupedEvents[d] || []);
   }, [pageDates, groupedEvents]);
-  const scrollView = useRef<ScrollView>();
+  const scrollView = useRef<ScrollView>(null);
   const calendarHeight = useRef((end - start) * HOUR_BLOCK_HEIGHT);
   const styles = useRef(styleConstructor(theme || props.styles, calendarHeight.current));
 
@@ -245,7 +245,6 @@ const Timeline = (props: TimelineProps) => {
 
   return (
     <ScrollView
-      // @ts-expect-error
       ref={scrollView}
       style={styles.current.container}
       contentContainerStyle={[styles.current.contentStyle, {width: constants.screenWidth}]}
@@ -273,5 +272,5 @@ const Timeline = (props: TimelineProps) => {
   );
 };
 
-export {Event as TimelineEventProps, PackedEvent as TimelinePackedEventProps};
+export type {Event as TimelineEventProps, PackedEvent as TimelinePackedEventProps};
 export default React.memo(Timeline);

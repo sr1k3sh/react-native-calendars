@@ -88,7 +88,6 @@ const InfiniteList = (props: InfiniteListProps, ref: any) => {
     setTimeout(() => {
       const x = isHorizontal ? shouldFixRTL ? Math.floor(data.length / 2) + 1 : Math.floor(data.length / 2) * pageWidth : 0;
       const y = isHorizontal ? 0 : positionIndex * pageHeight;
-      // @ts-expect-error
       listRef.current?.scrollToOffset?.(x, y, false);
     }, 0);
   }, [data, disableScrollOnDataChange, isHorizontal]);
@@ -171,7 +170,6 @@ const InfiniteList = (props: InfiniteListProps, ref: any) => {
 
   return (
     <RecyclerListView
-      // @ts-expect-error
       ref={listRef}
       isHorizontal={isHorizontal}
       rowRenderer={renderItem}

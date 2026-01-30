@@ -147,7 +147,6 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
       sectionScroll.current = true; // to avoid setDate() in onViewableItemsChanged
       _topSection.current = sections[sectionIndex]?.title;
 
-      // @ts-expect-error should be fixed when we fix the typings of the ref.
       list?.current.scrollToLocation({
         animated: true,
         sectionIndex: sectionIndex,
@@ -229,7 +228,6 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
     <SectionList
       stickySectionHeadersEnabled
       {...props}
-      // @ts-expect-error
       ref={list}
       keyExtractor={_keyExtractor}
       showsVerticalScrollIndicator={false}

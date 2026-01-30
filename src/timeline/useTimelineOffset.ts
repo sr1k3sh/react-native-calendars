@@ -1,10 +1,10 @@
-import {useCallback, useEffect, MutableRefObject} from 'react';
+import {useCallback, useEffect, RefObject} from 'react';
 import {NativeScrollEvent, NativeSyntheticEvent, ScrollView} from 'react-native';
 
 interface UseTimelineOffsetProps {
   onChangeOffset?: (offset: number) => void;
   scrollOffset?: number;
-  scrollViewRef: MutableRefObject<ScrollView | undefined>;
+  scrollViewRef: RefObject<ScrollView>;
 }
 
 export default (props: UseTimelineOffsetProps) => {

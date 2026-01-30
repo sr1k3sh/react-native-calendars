@@ -253,8 +253,7 @@ const CalendarList = (props: CalendarListProps & ContextProp, ref: any) => {
         markedDates={getMarkedDatesForItem(item)}
         item={item}
         style={calendarStyle}
-        // @ts-expect-error - type mismatch - ScrollView's 'horizontal' is nullable
-        horizontal={horizontal}
+        horizontal={horizontal ?? undefined}
         calendarWidth={calendarWidth}
         calendarHeight={calendarHeight}
         scrollToMonth={scrollToMonth}
