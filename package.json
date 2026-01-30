@@ -1,11 +1,12 @@
 {
   "name": "@r1k3sh/react-native-calendars",
-  "version": "1.22.1",
-  "main": "src/index.ts",
-  "types": "src/index.d.ts",
+  "version": "1.22.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "React Native Calendar Components",
   "scripts": {
     "build": "yarn build:tsc && yarn build:docs",
+    "build:tsc": "tsc",
     "build:ts": "tsc",
     "build:dev": "tsc --noEmit",
     "build:docs": "node ./scripts/build-docs.js",
@@ -30,6 +31,11 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "author": "sr1k3sh",
   "license": "MIT",
   "dependencies": {

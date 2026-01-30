@@ -1,0 +1,1 @@
+{"version":3,"file":"WeekDaysNames.d.ts","sourceRoot":"","sources":["../../../src/commons/WeekDaysNames.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAC1B,OAAO,EAAC,SAAS,EAAQ,SAAS,EAAC,MAAM,cAAc,CAAC;AAGxD,UAAU,kBAAkB;IAC1B,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,KAAK,CAAC,EAAE,SAAS,CAAC,SAAS,CAAC,CAAC;CAC9B;AAED,QAAA,MAAM,aAAa,kDAAkC,kBAAkB,SAgBrE,CAAC;AAEH,eAAe,aAAa,CAAC"}

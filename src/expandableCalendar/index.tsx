@@ -19,7 +19,6 @@ import {
   AccessibilityInfo,
   Animated,
   GestureResponderEvent,
-  Image,
   ImageSourcePropType,
   PanResponder,
   PanResponderGestureState,
@@ -302,7 +301,7 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
     }
   }, []);
 
-  const handleScreenReaderStatus = (screenReaderEnabled: any) => {
+  const handleScreenReaderStatus = (_screenReaderEnabled: any) => {
     setScreenReaderEnabled(false);
   };
 
