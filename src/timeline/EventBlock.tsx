@@ -60,7 +60,6 @@ const EventBlock = (props: EventBlockProps) => {
         activeOpacity={0.9}
         onPress={_onPress}
         style={[
-          styles.event,
           {
             left: event.left,
             height: event.height,
