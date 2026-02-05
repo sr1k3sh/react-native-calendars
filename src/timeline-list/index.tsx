@@ -47,10 +47,14 @@ export interface TimelineListProps {
    * Should initially scroll to a specific time (relevant only for NOT "today" timelines)
    */
   initialTime?: TimelineProps['initialTime'];
+  /**
+   * Disable horizontal scrolling between timeline pages
+   */
+  disableTimelineScroll?: boolean;
 }
 
 const TimelineList = (props: TimelineListProps) => {
-  const {timelineProps, events, renderItem, showNowIndicator, scrollToFirst, scrollToNow, initialTime} = props;
+  const {timelineProps, events, renderItem, showNowIndicator, scrollToFirst, scrollToNow, initialTime, disableTimelineScroll = false} = props;
   const shouldFixRTL = useMemo(() => constants.isRTL && (constants.isRN73() || constants.isAndroid), []); // isHorizontal = true
   const {date, updateSource, setDate, numberOfDays = 1, timelineLeftInset} = useContext(Context);
   const listRef = useRef<any>();
@@ -154,7 +158,7 @@ const TimelineList = (props: TimelineListProps) => {
     <InfiniteList
       isHorizontal
       ref={listRef}
-      data={pages}
+      data={disableTimelineScroll ? [date] : pages}
       renderItem={renderPage}
       onPageChange={onPageChange}
       onReachNearEdge={onReachNearEdge}
@@ -163,7 +167,8 @@ const TimelineList = (props: TimelineListProps) => {
       extendedState={{todayEvents: events[date], pages}}
       initialOffset={initialOffset}
       scrollViewProps={{
-        onMomentumScrollEnd
+        onMomentumScrollEnd,
+        scrollEnabled: !disableTimelineScroll
       }}
     />
   );

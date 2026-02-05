@@ -4,7 +4,6 @@ import times from 'lodash/times';
 import React, {useCallback, useMemo, useRef} from 'react';
 import {View, Text, TouchableWithoutFeedback, ViewStyle, TextStyle, StyleSheet} from 'react-native';
 
-import constants from '../commons/constants';
 import {buildTimeString, calcTimeByPosition, calcDateByPosition} from './helpers/presenter';
 import {buildUnavailableHoursBlocks, HOUR_BLOCK_HEIGHT, UnavailableHours} from './Packer';
 
