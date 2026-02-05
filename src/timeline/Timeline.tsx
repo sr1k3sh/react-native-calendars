@@ -3,10 +3,8 @@ import map from 'lodash/map';
 import times from 'lodash/times';
 import groupBy from 'lodash/groupBy';
 
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
-import {View, ScrollView} from 'react-native';
-
-import constants from '../commons/constants';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {View, ScrollView, Dimensions} from 'react-native';
 import {generateDay} from '../dateutils';
 import {getCalendarDateString} from '../services';
 import {Theme} from '../types';
@@ -157,12 +155,13 @@ const Timeline = (props: TimelineProps) => {
   const scrollView = useRef<ScrollView>(null);
   const calendarHeight = useRef((end - start) * HOUR_BLOCK_HEIGHT);
   const styles = useRef(styleConstructor(theme || props.styles, calendarHeight.current));
+  const [dimensions, setDimensions] = useState(() => Dimensions.get('window'));
 
   const {scrollEvents} = useTimelineOffset({onChangeOffset, scrollOffset, scrollViewRef: scrollView});
 
   const width = useMemo(() => {
-    return constants.screenWidth - timelineLeftInset;
-  }, [timelineLeftInset]);
+    return dimensions.width - timelineLeftInset;
+  }, [timelineLeftInset, dimensions.width]);
 
   const packedEvents = useMemo(() => {
     return map(pageEvents, (_e, i) => {
@@ -173,7 +172,17 @@ const Timeline = (props: TimelineProps) => {
         rightEdgeSpacing: rightEdgeSpacing / numberOfDays
       });
     });
-  }, [pageEvents, start, numberOfDays]);
+  }, [pageEvents, start, numberOfDays, width]);
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ window }) => {
+      setDimensions(window);
+    });
+
+    return () => {
+      subscription?.remove();
+    };
+  }, []);
 
   useEffect(() => {
     let initialPosition = 0;
@@ -247,7 +256,7 @@ const Timeline = (props: TimelineProps) => {
     <ScrollView
       ref={scrollView}
       style={styles.current.container}
-      contentContainerStyle={[styles.current.contentStyle, {width: constants.screenWidth}]}
+      contentContainerStyle={[styles.current.contentStyle, {width: dimensions.width}]}
       showsVerticalScrollIndicator={false}
       {...scrollEvents}
       testID={testID}

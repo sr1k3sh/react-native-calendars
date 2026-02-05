@@ -1,6 +1,6 @@
 import XDate from 'xdate';
-import React, {useCallback, useContext, useMemo, useRef, useState} from 'react';
-import {FlatList, View, ViewToken} from 'react-native';
+import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react';
+import {Dimensions, FlatList, View, ViewToken} from 'react-native';
 import {sameWeek, onSameDateRange, getWeekDates} from '../../dateutils';
 import {toMarkingFormat} from '../../interface';
 import {DateData, MarkedDates} from '../../types';
@@ -47,6 +47,7 @@ const WeekCalendar = (props: WeekCalendarProps) => {
   const changedItems = useRef(constants.isRTL);
   const list = useRef<FlatList>(null);
   const currentIndex = useRef(NUMBER_OF_PAGES);
+  const [dimensions, setDimensions] = useState(() => Dimensions.get('window'));
 
   const shouldFixRTL = useMemo(() => !constants.isRN73() && constants.isAndroidRTL, []);
 
@@ -83,8 +84,8 @@ const WeekCalendar = (props: WeekCalendarProps) => {
   }, [date, updateSource, shouldFixRTL]);
 
   const containerWidth = useMemo(() => {
-    return calendarWidth ?? constants.screenWidth;
-  }, [calendarWidth]);
+    return calendarWidth ?? dimensions.width;
+  }, [calendarWidth, dimensions.width]);
 
   const _onDayPress = useCallback((value: DateData) => {
     if (onDayPress) {
@@ -206,6 +207,16 @@ const WeekCalendar = (props: WeekCalendarProps) => {
       },
       onViewableItemsChanged
     }]);
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ window }) => {
+      setDimensions(window);
+    });
+
+    return () => {
+      subscription?.remove();
+    };
+  }, []);
 
   return (
     <View

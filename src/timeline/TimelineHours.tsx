@@ -30,7 +30,6 @@ export interface TimelineHoursProps {
   testID?: string;
 }
 
-const dimensionWidth = constants.screenWidth;
 const EVENT_DIFF = 20;
 
 const TimelineHours = (props: TimelineHoursProps) => {
@@ -124,14 +123,14 @@ const TimelineHours = (props: TimelineHoursProps) => {
               <View
                 key={`line${time}`}
                 testID={`${testID}.${time}.line`}
-                style={[styles.line, {top: offset * index, width: dimensionWidth - EVENT_DIFF, left: timelineLeftInset - 16}]}
+                style={[styles.line, {top: offset * index, width: width + timelineLeftInset - EVENT_DIFF, left: timelineLeftInset - 16}]}
               />
             )}
             {
               <View
                 key={`lineHalf${time}`}
                 testID={`${testID}.${time}.lineHalf`}
-                style={[styles.line, {top: offset * (index + 0.5), width: dimensionWidth - EVENT_DIFF, left: timelineLeftInset - 16}]}
+                style={[styles.line, {top: offset * (index + 0.5), width: width + timelineLeftInset - EVENT_DIFF, left: timelineLeftInset - 16}]}
               />
             }
           </React.Fragment>
@@ -142,4 +141,4 @@ const TimelineHours = (props: TimelineHoursProps) => {
   );
 };
 
-export default React.memo(TimelineHours);
+export default TimelineHours;
