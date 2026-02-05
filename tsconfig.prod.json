@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    // "outDir": "dist",
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "allowImportingTsExtensions": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", ".next", "out", "next.config.js", "public/js", "node_modules", "example", "**/__tests__", "**/*.spec.ts", "**/*.spec.tsx"]
+}

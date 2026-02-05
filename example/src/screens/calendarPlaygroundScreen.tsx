@@ -147,7 +147,7 @@ const NewCalendarScreen = () => {
         color: '#70d7c7',
         customTextStyle: {
           color: '#FFFAAA',
-          fontWeight: '700'
+          fontWeight: 700
         }
       },
       [getDate(4)]: {color: '#70d7c7', textColor: 'white', marked: true, dotColor: 'white'},
@@ -246,7 +246,7 @@ const NewCalendarScreen = () => {
         customStyles: {
           text: {
             color: 'black',
-            fontWeight: 'bold'
+            fontWeight: 'bold' as string
           }
         }
       },
@@ -341,7 +341,7 @@ const NewCalendarScreen = () => {
   };
 
   /** Custom Day */
-  const CustomDay = ({date, state}) => {
+  const CustomDay = ({date, state}: {date?: any; state?: any}) => {
     return (
       <View>
         <Text style={[styles.customDay, state === 'disabled' ? styles.disabledText : styles.defaultText]}>
@@ -370,7 +370,7 @@ const NewCalendarScreen = () => {
 
   const CustomHeader = React.forwardRef((props, ref) => {
     customHeaderProps.current = props;
-    
+
     return (
       // @ts-expect-error
       <View ref={ref} {...props} style={styles.customHeader}>
@@ -563,8 +563,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: 14, 
-    fontWeight: 'bold' 
+    fontSize: 14,
+    fontWeight: 'bold'
   },
   buttonText: {
     color: GREEN,
@@ -628,8 +628,8 @@ const styles = StyleSheet.create({
     padding: 8
   },
   customTitleContainer: {
-    flexDirection: 'row', 
-    alignItems: 'center', 
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10
   },
   customTitle: {

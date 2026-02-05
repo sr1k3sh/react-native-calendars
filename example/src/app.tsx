@@ -1,7 +1,6 @@
 import './wdyr'; // <--- must be first import
 import React from 'react';
 import {AppRegistry} from 'react-native';
-//@ts-expect-error
 import {LocaleConfig} from 'react-native-calendars';
 import {name as appName} from '../app.json';
 import MenuScreen from './screens/menuScreen';
@@ -9,7 +8,6 @@ import MenuScreen from './screens/menuScreen';
 /** Locale */
 
 LocaleConfig.locales['en'] = {
-  formatAccessibilityLabel: "dddd d 'of' MMMM 'of' yyyy",
   monthNames: [
     'January',
     'February',
@@ -33,11 +31,9 @@ LocaleConfig.locales['fr'] = {
   monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
   monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
   dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-  dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-  today: 'Aujourd\'hui'
+  dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.']
 };
 LocaleConfig.locales['he'] = {
-  formatAccessibilityLabel: "dddd d 'of' MMMM 'of' yyyy",
   monthNames: [
     'ינואר',
     'פברואר',

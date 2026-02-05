@@ -63,7 +63,7 @@ const MenuScreen = () => {
   };
 
   const renderModal = () => {
-    const ScreenComponent = nextScreen.screen;
+    const ScreenComponent = nextScreen.screen as React.ComponentType<any>;
 
     return (
       <Modal visible={showModal} animationType="slide">
