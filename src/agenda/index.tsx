@@ -332,7 +332,7 @@ export default class Agenda extends Component<AgendaProps, State> {
 
   renderReservations() {
     const reservationListProps = extractReservationListProps(this.props);
-    if (isFunction(this.props.renderList)) {
+    if (isFunction(this.props.renderList) && this.props.renderList) {
       return this.props.renderList({
         ...reservationListProps,
         selectedDay: this.state.selectedDay,

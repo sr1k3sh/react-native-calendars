@@ -5,7 +5,7 @@ import throttle from 'lodash/throttle';
 
 import XDate from 'xdate';
 
-import React, {
+import {
   forwardRef,
   useCallback,
   useContext,
@@ -519,7 +519,7 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
 
   const _renderArrow = useCallback((direction: Direction) => {
     // If custom renderArrow is provided, use it
-    if (isFunction(renderArrow)) {
+    if (renderArrow && isFunction(renderArrow)) {
       return renderArrow(direction);
     }
 
@@ -564,7 +564,7 @@ const ExpandableCalendar = forwardRef<ExpandableCalendarRef, ExpandableCalendarP
   const renderKnob = () => {
     return (
       <View style={style.current.knobContainer} pointerEvents={'box-none'}>
-        <TouchableOpacity style={style.current.knob} testID={`${testID}.knob`} onPress={toggleCalendarPosition} hitSlop={knobHitSlop}/>
+        <TouchableOpacity style={style.current.knob} testID={`${testID}.knob`} onPress={toggleCalendarPosition} hitSlop={knobHitSlop} />
       </View>
     );
   };

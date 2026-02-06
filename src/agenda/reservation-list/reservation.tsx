@@ -2,14 +2,14 @@ import isFunction from 'lodash/isFunction';
 import PropTypes from 'prop-types';
 import XDate from 'xdate';
 
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
 
-import {isToday} from '../../dateutils';
-import {getDefaultLocale} from '../../services';
-import {RESERVATION_DATE} from '../../testIDs';
+import { isToday } from '../../dateutils';
+import { getDefaultLocale } from '../../services';
+import { RESERVATION_DATE } from '../../testIDs';
+import { AgendaEntry, Theme } from '../../types';
 import styleConstructor from './style';
-import {Theme, AgendaEntry} from '../../types';
 
 
 export interface ReservationProps {
@@ -53,7 +53,7 @@ class Reservation extends Component<ReservationProps> {
     const d2 = nextProps.date;
     const r1 = this.props.item;
     const r2 = nextProps.item;
-    
+
     let changed = true;
     if (!d1 && !d2) {
       changed = false;
@@ -64,7 +64,7 @@ class Reservation extends Component<ReservationProps> {
         changed = false;
       } else if (r1 && r2) {
         if ((!d1 && !d2) || (d1 && d2)) {
-          if (isFunction(this.props.rowHasChanged)) {
+          if (this.props.rowHasChanged && isFunction(this.props.rowHasChanged)) {
             changed = this.props.rowHasChanged(r1, r2);
           }
         }
@@ -74,9 +74,9 @@ class Reservation extends Component<ReservationProps> {
   }
 
   renderDate() {
-    const {item, date, renderDay} = this.props;
+    const { item, date, renderDay } = this.props;
 
-    if (isFunction(renderDay)) {
+    if (renderDay && isFunction(renderDay)) {
       return renderDay(date, item);
     }
 
@@ -95,19 +95,19 @@ class Reservation extends Component<ReservationProps> {
         </View>
       );
     }
-    return <View style={this.style.day}/>;
+    return <View style={this.style.day} />;
   }
 
   render() {
-    const {item, date, renderItem, renderEmptyDate} = this.props;
-    
+    const { item, date, renderItem, renderEmptyDate } = this.props;
+
     let content;
     if (item) {
       const firstItem = date ? true : false;
-      if (isFunction(renderItem)) {
+      if (renderItem && isFunction(renderItem)) {
         content = renderItem(item, firstItem);
       }
-    } else if (isFunction(renderEmptyDate)) {
+    } else if (renderEmptyDate && isFunction(renderEmptyDate)) {
       content = renderEmptyDate(date);
     }
 

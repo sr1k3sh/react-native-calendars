@@ -1,35 +1,35 @@
 import PropTypes from 'prop-types';
 
+import debounce from 'lodash/debounce';
 import get from 'lodash/get';
-import map from 'lodash/map';
 import isFunction from 'lodash/isFunction';
 import isUndefined from 'lodash/isUndefined';
-import debounce from 'lodash/debounce';
+import map from 'lodash/map';
 
 import XDate from 'xdate';
 
-import React, {forwardRef, useCallback, useContext, useEffect, useMemo, useRef} from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import {
-  SectionList,
   DefaultSectionT,
-  SectionListData,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
   LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  SectionList,
+  SectionListData,
   ViewToken
 } from 'react-native';
 
-import {useDidUpdate, useCombinedRefs} from '../../hooks';
-import {getMoment} from '../../momentResolver';
-import {isToday, isGTE, sameDate} from '../../dateutils';
-import {parseDate} from '../../interface';
-import {getDefaultLocale} from '../../services';
-import {UpdateSources, todayString} from '../commons';
 import constants from '../../commons/constants';
-import styleConstructor from '../style';
+import { isGTE, isToday, sameDate } from '../../dateutils';
+import { useCombinedRefs, useDidUpdate } from '../../hooks';
+import { parseDate } from '../../interface';
+import { getMoment } from '../../momentResolver';
+import { getDefaultLocale } from '../../services';
+import { UpdateSources, todayString } from '../commons';
 import Context from '../Context';
+import styleConstructor from '../style';
+import { AgendaListProps, AgendaSectionHeader } from './commons';
 import InfiniteAgendaList from './infiniteAgendaList';
-import {AgendaListProps, AgendaSectionHeader} from './commons';
 
 const viewabilityConfig = {
   itemVisiblePercentThreshold: 20 // 50 means if 50% of the item is visible
@@ -62,7 +62,7 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
     onViewableItemsChanged
   } = props;
 
-  const {date, updateSource, setDate, setDisabled} = useContext(Context);
+  const { date, updateSource, setDate, setDisabled } = useContext(Context);
 
   const style = useRef(styleConstructor(theme));
   const list = useCombinedRefs(ref);
@@ -155,9 +155,9 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
         viewOffset: (constants.isAndroid ? sectionHeight.current : 0) + viewOffset
       });
     }
-  }, 1000, {leading: true, trailing: true}), [viewOffset, sections]);
+  }, 1000, { leading: true, trailing: true }), [viewOffset, sections]);
 
-  const _onViewableItemsChanged = useCallback((info: {viewableItems: Array<ViewToken>; changed: Array<ViewToken>}) => {
+  const _onViewableItemsChanged = useCallback((info: { viewableItems: Array<ViewToken>; changed: Array<ViewToken> }) => {
     if (info?.viewableItems && !sectionScroll.current) {
       const topSection = get(info?.viewableItems[0], 'section.title');
       if (topSection && topSection !== _topSection.current) {
@@ -193,7 +193,7 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
 
   const headerTextStyle = useMemo(() => [style.current.sectionText, sectionStyle], [sectionStyle]);
 
-  const _onScrollToIndexFailed = useCallback((info: {index: number; highestMeasuredFrameIndex: number; averageItemLength: number}) => {
+  const _onScrollToIndexFailed = useCallback((info: { index: number; highestMeasuredFrameIndex: number; averageItemLength: number }) => {
     if (onScrollToIndexFailed) {
       onScrollToIndexFailed(info);
     } else {
@@ -205,7 +205,7 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
     sectionHeight.current = event.nativeEvent.layout.height;
   }, []);
 
-  const _renderSectionHeader = useCallback((info: {section: SectionListData<any, DefaultSectionT>}) => {
+  const _renderSectionHeader = useCallback((info: { section: SectionListData<any, DefaultSectionT> }) => {
     const title = info?.section?.title;
 
     if (renderSectionHeader) {
@@ -213,17 +213,17 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
     }
 
     const headerTitle = getSectionTitle(title);
-    return <AgendaSectionHeader title={headerTitle} style={headerTextStyle} onLayout={onHeaderLayout}/>;
+    return <AgendaSectionHeader title={headerTitle} style={headerTextStyle} onLayout={onHeaderLayout} />;
   }, [headerTextStyle]);
 
   const _keyExtractor = useCallback((item: any, index: number) => {
-    return isFunction(keyExtractor) ? keyExtractor(item, index) : String(index);
+    return keyExtractor && isFunction(keyExtractor) ? keyExtractor(item, index) : String(index);
   }, [keyExtractor]);
-  
+
   if (props.infiniteListProps) {
-    return <InfiniteAgendaList {...props}/>;
+    return <InfiniteAgendaList {...props} />;
   }
-  
+
   return (
     <SectionList
       stickySectionHeadersEnabled
@@ -238,7 +238,7 @@ const AgendaList = forwardRef((props: AgendaListProps, ref: any) => {
       onMomentumScrollBegin={_onMomentumScrollBegin}
       onMomentumScrollEnd={_onMomentumScrollEnd}
       onScrollToIndexFailed={_onScrollToIndexFailed}
-      // getItemLayout={_getItemLayout} // onViewableItemsChanged is not updated when list scrolls!!!
+    // getItemLayout={_getItemLayout} // onViewableItemsChanged is not updated when list scrolls!!!
     />
   );
 
