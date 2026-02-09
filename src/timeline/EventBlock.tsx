@@ -64,7 +64,8 @@ const EventBlock = (props: EventBlockProps) => {
             left: event.left,
             height: event.height,
             width: event.width,
-            top: event.top
+            top: event.top,
+            position: 'absolute'
           }
         ]}
       >
