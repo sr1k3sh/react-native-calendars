@@ -1,12 +1,12 @@
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as defaultStyle from '../style';
-import {Theme} from '../types';
+import { Theme } from '../types';
 import constants from '../commons/constants';
 
 export const KNOB_CONTAINER_HEIGHT = 24;
 
 export default function styleConstructor(theme: Theme = {}) {
-  const appStyle = {...defaultStyle, ...theme};
+  const appStyle = { ...defaultStyle, ...theme };
 
   return StyleSheet.create({
     containerShadow: {
@@ -16,7 +16,7 @@ export default function styleConstructor(theme: Theme = {}) {
           shadowColor: '#858F96',
           shadowOpacity: 0.25,
           shadowRadius: 10,
-          shadowOffset: {height: 2, width: 0},
+          shadowOffset: { height: 2, width: 0 },
           zIndex: 99
         },
         android: {
@@ -29,6 +29,13 @@ export default function styleConstructor(theme: Theme = {}) {
     },
     container: {
       backgroundColor: appStyle.calendarBackground
+    },
+    knobTouchable: {
+      width: 40,
+      height: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 10
     },
     knobContainer: {
       position: 'absolute',
@@ -124,7 +131,7 @@ export default function styleConstructor(theme: Theme = {}) {
     },
     arrowImage: {
       tintColor: appStyle.arrowColor,
-      transform: constants.isRTL ? [{scaleX: -1}] : undefined
+      transform: constants.isRTL ? [{ scaleX: -1 }] : undefined
     },
     contextWrapper: {
       flex: 1
@@ -148,7 +155,7 @@ export default function styleConstructor(theme: Theme = {}) {
           shadowColor: '#79838A',
           shadowOpacity: 0.3,
           shadowRadius: 14,
-          shadowOffset: {height: 6, width: 0}
+          shadowOffset: { height: 6, width: 0 }
         },
         android: {
           elevation: 6
